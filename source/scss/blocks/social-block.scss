@@ -17,6 +17,7 @@
   height: 4rem;
   color: $c-dark;
   border-radius: 50%;
+  transition: all 0.45s;
 
   @media (max-width: $tablet) and (orientation: portrait) {
     display: none;
@@ -28,13 +29,19 @@
 
   &::before {
     @include center;
-    content: "";
+    content: '';
     width: 100%;
     height: 100%;
     border-radius: 50%;
     background-color: $c-light;
     border: 2px solid $c-light;
     z-index: -1;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.7s cubic-bezier(0.28, 0.42, 0.13, 0.99) 0.5s;
+  }
+
+  .loaded &::before {
+    transform: translate(-50%, -50%);
   }
 
   svg {
@@ -44,13 +51,13 @@
     height: 2.2rem;
   }
 
-  &:hover,
+  .loaded &:hover,
   .social-block--active & {
     color: $c-purple;
 
     &::before {
-      width: 112.5%;
-      height: 112.5%;
+      transform: translate(-50%, -50%) scale(1.125);
+      transition: 1s transform ease;
     }
   }
 
@@ -87,7 +94,6 @@
   top: 100%;
   right: 0;
   margin-top: 1.5rem;
-  opacity: 0;
   pointer-events: none;
 
   @media (min-width: $stop-scaling) {
@@ -115,7 +121,7 @@
   }
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     bottom: 100%;
     left: 0;
@@ -140,11 +146,25 @@
   .social-block--active & {
     opacity: 1;
     pointer-events: auto;
+
+    @for $i from 1 through 3 {
+      li:nth-of-type(#{$i}) {
+        transition-delay: 0.15s * ($i - 1);
+      }
+    }
+
+    li {
+      opacity: 1;
+    }
   }
 
   li {
     flex: none;
     margin-bottom: 0.5rem;
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 0.35s;
+    transition-timing-function: ease;
 
     @media (min-width: $stop-scaling) {
       margin-bottom: 5px;
@@ -186,6 +206,7 @@
 
   &:hover {
     color: $c-purple;
+    transition-property: background, border, outline;
   }
 
   &:focus {
