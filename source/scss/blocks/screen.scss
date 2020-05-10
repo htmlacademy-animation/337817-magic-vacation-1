@@ -319,11 +319,6 @@
   // background-color: $c-dark;
 }
 
-// .screen--prizes.active ~ .fill,
-// .screen--rules.active ~ .fill,
-// .screen--game.active ~ .fill {
-//   height: 100%;
-// }
 
 .screen--game {
   position: relative;
@@ -372,5 +367,9 @@
 }
 
 .screen--rules {
+<<<<<<< HEAD
   // background-color: $c-dark;
+=======
+  background-color: $c-dark;
+>>>>>>> master
 }
