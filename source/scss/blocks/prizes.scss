@@ -330,3 +330,72 @@
     }
   }
 }
+
+.screen--prizes {
+  .prizes {
+    &__title {
+      animation-name: fade;
+      animation-timing-function: ease-in;
+      animation-duration: 0.85s;
+      animation-delay: 0.55s;
+      animation-fill-mode: backwards;
+    }
+
+    &__lead {
+      animation-name: fade-in;
+      animation-timing-function: ease-out;
+      animation-duration: 0.85s;
+      animation-delay: 0.65s;
+      animation-fill-mode: backwards;
+    }
+
+    &__list {
+      animation-name: fade;
+      animation-timing-function: ease-in-out;
+      animation-duration: 0.85s;
+      animation-delay: 0.85s;
+      animation-fill-mode: backwards;
+    }
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+.fill {
+  position: absolute;
+  bottom: 0;
+  top: initial;
+  height: 0%;
+  width: 100%;
+  background: $c-dark;
+  transition: height 0.45s;
+  z-index: 0;
+
+  .screen--prizes.active ~ &,
+  .screen--rules.active ~ &,
+  .screen--game.active ~ & {
+    height: 100%;
+  }
+
+  .screen--intro.active ~ & {
+    transition-duration: 0s;
+  }
+}
