@@ -43,6 +43,22 @@
   border: 0;
   border-radius: 3rem;
   outline: none;
+  transform: scaleX(0);
+  transform-origin: right;
+
+  .active & {
+    animation-name: form-field;
+    animation-duration: 0.5s;
+    animation-delay: 0.5s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes form-field {
+    to {
+      transform: scaleX(1);
+    }
+  }
 
   &:focus {
     border: 1px solid $c-purple;
